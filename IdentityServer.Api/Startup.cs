@@ -9,8 +9,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using IdentityServer.Api.Models;
 
 namespace IdentityServer.Api
 {
@@ -27,6 +29,7 @@ namespace IdentityServer.Api
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<BankContext>(opts => opts.UseInMemoryDatabase("BankingDb"));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
